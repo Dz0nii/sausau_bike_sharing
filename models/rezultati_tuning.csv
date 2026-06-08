@@ -1,0 +1,5 @@
+Model,MAE,RMSE,R²
+RF  — originalni,35.14,55.17,0.8996
+RF  — podešeni,35.15,55.12,0.8998
+XGB — originalni,33.24,50.21,0.9168
+XGB — podešeni,30.86,47.38,0.926

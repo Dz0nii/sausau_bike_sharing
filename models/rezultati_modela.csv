@@ -1,0 +1,5 @@
+Model,MAE,RMSE,R²
+XGBoost,33.24,50.21,0.9168
+Random Forest,35.14,55.17,0.8996
+Gradient Boosting,59.09,80.48,0.7864
+Linearna regresija (baseline),74.05,99.55,0.6731
