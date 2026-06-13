@@ -57,7 +57,7 @@ for naziv, model in modeli.items():
 
     rezultati.append({'Model': naziv, 'MAE': round(mae,2), 
                       'RMSE': round(rmse,2), 'R²': round(r2,4)})
-    # print(f"{naziv:35s} | MAE: {mae:6.2f} | RMSE: {rmse:6.2f} | R²: {r2:.4f}")
+    print(f"{naziv:35s} | MAE: {mae:6.2f} | RMSE: {rmse:6.2f} | R²: {r2:.4f}")
 
 #=====================
 # 4: CROSS-VALIDATION

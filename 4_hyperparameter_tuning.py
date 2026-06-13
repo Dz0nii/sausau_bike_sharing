@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split, GridSearchCV, RandomizedSearchCV
-from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
+from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from xgboost import XGBRegressor
 import joblib
@@ -36,8 +36,8 @@ rf_grid = GridSearchCV(
     cv=5, scoring='r2', verbose=1, n_jobs=-1
 )
 rf_grid.fit(X_train, y_train)
-# print(f"RF  — Najbolji parametri: {rf_grid.best_params_}")
-# print(f"RF  — Najbolji CV R²:     {rf_grid.best_score_:.4f}")
+print(f"RF  — Najbolji parametri: {rf_grid.best_params_}")
+print(f"RF  — Najbolji CV R²:     {rf_grid.best_score_:.4f}")
 
 #============
 # 3: XGBOOST
@@ -55,8 +55,8 @@ xgb_random = RandomizedSearchCV(
     n_iter=20, cv=5, scoring='r2', verbose=1, random_state=42, n_jobs=-1
 )
 xgb_random.fit(X_train, y_train)
-# print(f"XGB — Najbolji parametri: {xgb_random.best_params_}")
-# print(f"XGB — Najbolji CV R²:     {xgb_random.best_score_:.4f}")
+print(f"XGB — Najbolji parametri: {xgb_random.best_params_}")
+print(f"XGB — Najbolji CV R²:     {xgb_random.best_score_:.4f}")
 
 #==============================================
 # 4: POREDJENJE ORIGINALNIH I PODESENIH MODELA
@@ -80,7 +80,7 @@ for naziv, model in modeli.items():
     r2   = r2_score(y_val, y_pred)
     rezultati.append({'Model': naziv, 'MAE': round(mae,2), 
                       'RMSE': round(rmse,2), 'R²': round(r2,4)})
-    # print(f"{naziv:20s} | MAE: {mae:6.2f} | RMSE: {rmse:6.2f} | R²: {r2:.4f}")
+    print(f"{naziv:20s} | MAE: {mae:6.2f} | RMSE: {rmse:6.2f} | R²: {r2:.4f}")
 
 #======================
 # 5: GRAFIK POREDJENJA
