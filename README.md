@@ -10,7 +10,7 @@ Dataset pokriva period 2011–2012. godine i sadrži 17.379 zapisa.
 
 # Struktura projekta
 
-projekat/
+projekat_v2/
 
 ├── data/
 
@@ -24,40 +24,56 @@ projekat/
 
 ├── plots/                        ← grafici
 
-├── 1_preprocessing.py            ← preprocesiranje podataka
+├── src/
 
-├── 2_eda.py                      ← eksplorativna analiza
+│   ├── 1_preprocessing.py        ← preprocesiranje podataka
 
-├── 3_modeling.py                 ← treniranje modela
+│   ├── 2_eda.py                  ← eksplorativna analiza
 
-├── 4_hyperparameter_tuning.py    ← podešavanje hiperparametara
+│   ├── 3_modeling.py             ← treniranje modela
 
-├── 5_results_analysis.py         ← analiza rezultata
+│   ├── 4_hyperparameter_tuning.py ← podešavanje hiperparametara
 
-├── 6_feature_selection.py        ← odabir atributa
+│   ├── 5_results_analysis.py     ← analiza rezultata
 
-├── 7_deployment.py               ← terminal UI
+│   ├── 6_feature_selection.py    ← odabir atributa
 
-└── app.py                        ← Streamlit web UI
+│   ├── 7_deployment.py           ← terminal UI
+
+│   └── app.py                    ← Streamlit web UI
+
+├── pyproject.toml
+
+├── uv.lock
+
+└── README.md
+
+# Instalacija
+
+Projekat koristi **uv** za upravljanje zavisnostima.
+
+```bash
+uv sync
+```
 
 # Pokretanje
 
 Faze se pokreću redom iz terminala:
 
 ```bash
-python 1_preprocessing.py
-python 2_eda.py
-python 3_modeling.py
-python 4_hyperparameter_tuning.py
-python 5_results_analysis.py
-python 6_feature_selection.py
-python 7_deployment.py
+uv run src/1_preprocessing.py
+uv run src/2_eda.py
+uv run src/3_modeling.py
+uv run src/4_hyperparameter_tuning.py
+uv run src/5_results_analysis.py
+uv run src/6_feature_selection.py
+uv run src/7_deployment.py
 ```
 
 Za pokretanje web UI:
 
 ```bash
-streamlit run app.py
+uv run streamlit run src/app.py
 ```
 
 # Rezultati
