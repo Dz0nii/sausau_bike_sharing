@@ -11,7 +11,6 @@ import os
 
 #=================================
 # 1: UCITAVANJE PODATAKA I MODELA
-#=================================
 
 model  = joblib.load('models/najbolji_model_tuned.pkl')
 naziv  = joblib.load('models/najbolji_model_naziv.pkl')
@@ -29,7 +28,6 @@ os.makedirs('plots', exist_ok=True)
 
 #=======================
 # 2: FEATURE IMPORTANCE
-#=======================
 
 importances = pd.Series(model.feature_importances_, index=X.columns).sort_values(ascending=False)
 
@@ -44,7 +42,6 @@ plt.show()
 
 #===========================
 # 3: PERMUTATION IMPORTANCE
-#===========================
 
 perm_imp = permutation_importance(model, X_test, y_test, n_repeats=10, random_state=42, n_jobs=-1)
 perm_series = pd.Series(perm_imp.importances_mean, index=X.columns).sort_values(ascending=False)
@@ -60,7 +57,6 @@ plt.show()
 
 #==========================
 # 4: POREDJENJE DVE METODE
-#==========================
 
 df_comp = pd.DataFrame({
     'Ugradjena':   importances / importances.max(),
@@ -81,7 +77,6 @@ plt.show()
 
 #=================================
 # 5: TRENIRANJE SA TOP ATRIBUTIMA
-#=================================
 
 top_features = importances.head(15).index.tolist()
 
@@ -108,7 +103,6 @@ for ime, f in [('MAE',  mean_absolute_error),
 
 #======================
 # 6: CUVANJE REZULTATA
-#======================
 
 joblib.dump(top_features, 'models/top_features.pkl')
 pd.DataFrame({'Atribut': importances.index,

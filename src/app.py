@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import joblib
 
-# --- Učitavanje ---
 model         = joblib.load('models/najbolji_model_tuned.pkl')
 naziv         = joblib.load('models/najbolji_model_naziv.pkl')
 feature_names = joblib.load('models/feature_names.pkl')

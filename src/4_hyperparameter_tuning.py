@@ -10,7 +10,6 @@ import os
 
 #========================
 # 1: UCITAVANJE PODATAKA
-#========================
 
 df = pd.read_csv('data/processed/hour_processed.csv')
 X  = df.drop(columns=['cnt'])
@@ -23,7 +22,6 @@ os.makedirs('plots', exist_ok=True)
 
 #==================
 # 2: RANDOM FOREST
-#==================
 
 rf_grid = GridSearchCV(
     RandomForestRegressor(random_state=42, n_jobs=-1),
@@ -41,7 +39,6 @@ print(f"RF  — Najbolji CV R²:     {rf_grid.best_score_:.4f}")
 
 #============
 # 3: XGBOOST
-#============
 
 xgb_random = RandomizedSearchCV(
     XGBRegressor(random_state=42, verbosity=0),
@@ -60,7 +57,6 @@ print(f"XGB — Najbolji CV R²:     {xgb_random.best_score_:.4f}")
 
 #==============================================
 # 4: POREDJENJE ORIGINALNIH I PODESENIH MODELA
-#==============================================
 
 modeli = {
     "RF  — originalni": RandomForestRegressor(n_estimators=100, random_state=42, n_jobs=-1),
@@ -84,7 +80,6 @@ for naziv, model in modeli.items():
 
 #======================
 # 5: GRAFIK POREDJENJA
-#======================
 
 rezultati_df = pd.DataFrame(rezultati)
 
@@ -100,7 +95,6 @@ plt.show()
 
 #=====================================
 # 6: IZBOR I CUVANJE NAJBOLJEG MODELA
-#=====================================
 
 rf_r2  = r2_score(y_val, rf_grid.best_estimator_.predict(X_val))
 xgb_r2 = r2_score(y_val, xgb_random.best_estimator_.predict(X_val))

@@ -7,7 +7,6 @@ import os
 
 #=================================
 # 1: UCITAVANJE PODATAKA I MODELA
-#=================================
 
 model  = joblib.load('models/najbolji_model_tuned.pkl')
 naziv  = joblib.load('models/najbolji_model_naziv.pkl')
@@ -21,7 +20,7 @@ reziduali = y_test - y_pred
 
 #===================
 # 2: PRIKAZ METRIKE
-#===================
+
 mae  = mean_absolute_error(y_test, y_pred)
 rmse = np.sqrt(mean_squared_error(y_test, y_pred))
 r2   = r2_score(y_test, y_pred)
@@ -33,7 +32,6 @@ print(f"R²:    {r2:.4f} — model objašnjava {r2*100:.1f}% varijabilnosti")
 
 #====================================
 # 3: STVARNE I PREDVIDJENE VREDNOSTI
-#====================================
 
 plt.figure(figsize=(8, 6))
 plt.scatter(y_test, y_pred, alpha=0.15, color='steelblue', s=10)
@@ -48,7 +46,6 @@ plt.show()
 
 #==============
 # 4: REZIDUALI
-#==============
 
 fig, axes = plt.subplots(1, 2, figsize=(14, 5))
 
@@ -70,7 +67,6 @@ plt.show()
 
 #============================
 # 5: GRESKA PO SATU I SEZONI
-#============================
 
 df_test = df_raw.loc[X_test.index].copy()
 df_test['abs_greska'] = np.abs(reziduali.values)

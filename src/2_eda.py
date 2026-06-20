@@ -6,7 +6,7 @@ import os
 
 #========================
 # 1: UCITAVANJE PODATAKA
-#========================
+
 # ucitava se i originalan csv zato sto enkodovane kolone nisu citljive na graficima
 df_raw = pd.read_csv('data/hour.csv')
 df = pd.read_csv('data/processed/hour_processed.csv')
@@ -15,7 +15,7 @@ os.makedirs('plots', exist_ok=True)
 
 #==============================
 # 2: ANALIZA CILJNE PROMENJIVE
-#==============================
+
 # print("Statistike ciljne promenljive (cnt):")
 # print(df_raw['cnt'].describe())
 
@@ -44,7 +44,7 @@ plt.show()
 
 #===========================
 # 3: IZNAJMLJIVANJA PO SATU
-#===========================
+
 plt.figure(figsize=(12, 5))
 
 po_satu = df_raw.groupby('hr')['cnt'].mean()
@@ -64,7 +64,7 @@ plt.show()
 
 #=========================
 # 4: KATEGORIJSKE ANALIZE
-#=========================
+
 fig, axes = plt.subplots(2, 2, figsize=(14, 10))
 
 # sezona
@@ -107,7 +107,7 @@ plt.show()
 
 #=====================
 # 5: VREMENSKI USLOVI
-#=====================
+
 fig, axes = plt.subplots(1, 3, figsize=(16, 5))
 
 # temperatura
@@ -135,7 +135,7 @@ plt.show()
 
 #========================
 # 6: KORELACIONA MATRICA
-#========================
+
 plt.figure(figsize=(10, 8))
 
 numericki = ['temp', 'atemp', 'hum', 'windspeed', 'yr',  'holiday', 'workingday', 'cnt']
@@ -161,9 +161,9 @@ plt.show()
 # print("\nNajveće korelacije sa cnt:")
 # print(korelacija['cnt'].sort_values(ascending=False))
 
-#=============================================================
-# 7: VREMENSKI USLOVI (weathersit atribut) (mozda nepotrebno)
-#=============================================================
+#==========================================
+# 7: VREMENSKI USLOVI (weathersit atribut)
+
 plt.figure(figsize=(10, 5))
 
 weather_labels = {

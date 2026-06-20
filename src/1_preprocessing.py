@@ -3,19 +3,19 @@ import os
 
 #========================
 # 1: UCITAVANJE PODATAKA
-#========================
+
 df = pd.read_csv('data/hour.csv')
 
 #===================================
 # 2: PROVERA PRAZNIH POLJA U TABELI
-#===================================
+
 # print("\nBroj nedostajućih vrednosti po koloni:")
 # print(df.isnull().sum())
 # print("\nUkupno nedostajućih vrednosti:", df.isnull().sum().sum())
 
 #======================
 # 3: PROVERA ANOMALIJA
-#======================
+
 anomalije = {
     'season':     (1, 4),
     'hr':         (0, 23),
@@ -37,7 +37,7 @@ anomalije = {
 
 #========================
 # 4: UKLANJANJE ATRIBUTA
-#========================
+
 # instant: predstavlja redni broj, nema prediktivnu vrednost
 df.drop(columns=['instant'], inplace=True)
 
@@ -52,7 +52,7 @@ df.drop(columns=['casual', 'registered'], inplace=True)
 
 #=======================================
 # 5: ENKODIRANJE KATEGORIJSKIH ATRIBUTA
-#=======================================
+
 # season -> season_2, season_3, season_4 (season_1 kolona nije neophodna)
 # isti princip se vrsi i za ostale kategorijske kolone
 kategorijske_kolone = ['season', 'hr', 'mnth', 'weekday', 'weathersit']
@@ -60,7 +60,7 @@ df_encoded = pd.get_dummies(df, columns=kategorijske_kolone, drop_first=True)
 
 #================================
 # 6: CUVANJE OBRADJENIH PODATAKA
-#================================
+
 os.makedirs('data/processed', exist_ok=True)
 df_encoded.to_csv('data/processed/hour_processed.csv', index=False)
 #print("Finalni oblik dataseta:", df_encoded.shape)

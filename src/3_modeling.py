@@ -13,7 +13,6 @@ import os
 
 #========================
 # 1: UCITAVANJE PODATAKA
-#========================
 
 df = pd.read_csv('data/processed/hour_processed.csv')
 X  = df.drop(columns=['cnt'])
@@ -26,7 +25,6 @@ X_train, X_val, y_train, y_val = train_test_split(X_temp, y_temp, test_size=0.17
 
 #=======================
 # 2: DEFINISANJE MODELA
-#=======================
 
 modeli = {
     "Linearna regresija (baseline)": Pipeline([
@@ -40,7 +38,6 @@ modeli = {
 
 #============================
 # 3: TRENIRANJE I EVALUACIJA
-#============================
 
 os.makedirs('models', exist_ok=True)
 os.makedirs('plots', exist_ok=True)
@@ -61,7 +58,6 @@ for naziv, model in modeli.items():
 
 #=====================
 # 4: CROSS-VALIDATION
-#=====================
 
 # print("\nCross-validation (5-fold R²):")
 for naziv, model in modeli.items():
@@ -70,7 +66,6 @@ for naziv, model in modeli.items():
 
 #======================
 # 5: GRAFIK POREDJENJA
-#======================
 
 rezultati_df = pd.DataFrame(rezultati).sort_values('R²', ascending=False).reset_index(drop=True)
 
@@ -86,7 +81,6 @@ plt.show()
 
 #===================
 # 6: CUVANJE MODELA
-#===================
 
 najbolji_naziv = rezultati_df.iloc[0]['Model']
 najbolji_model = modeli[najbolji_naziv]
