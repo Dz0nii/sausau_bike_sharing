@@ -1,5 +1,5 @@
 # Bike Sharing — Predikcija broja iznajmljenih bicikala
-Predmet: SAUSAU
+Predmet: SAUSAU  
 FTN Novi Sad
 
 # Opis projekta
